@@ -18,9 +18,6 @@ dart pub add pair
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
 ```dart
 var pair = Pair<int, int>(
     1, // key
