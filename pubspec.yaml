@@ -1,7 +1,7 @@
 name: pair
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/nandanurseptama/dart_pair
 
 environment:
   sdk: ^3.1.0
