@@ -87,5 +87,61 @@ void main() {
         {1: 2},
       );
     });
+
+    test("Pair should be able to mutate", () {
+      var newPair = pair.mutate((key, value) {
+        return Pair<String, double>(
+          key.toString(),
+          value.toDouble(),
+        );
+      });
+
+      var expectedPair = Pair<String, double>(
+        "1",
+        2,
+      );
+
+      expect(
+        newPair,
+        expectedPair,
+      );
+    });
+
+    test("Pair should be able to transform", () {
+      var newValue = pair.transform((key, value) {
+        return key + value;
+      });
+      var expectedValue = pair.key + pair.value;
+
+      expect(
+        newValue,
+        expectedValue,
+      );
+    });
+
+    test("Pair should be able to reverse key to value and vice versa", () {
+      var expectedReversedPair = Pair(
+        pair.value,
+        pair.key,
+      );
+
+      expect(
+        pair.reverse,
+        expectedReversedPair,
+      );
+    });
+
+    test("Pair should be able to deserialized", () {
+      var (key, value) = pair();
+
+      expect(
+        key,
+        pair.key,
+      );
+      expect(
+        value,
+        pair.value,
+      );
+    });
   });
 }

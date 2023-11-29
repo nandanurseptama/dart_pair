@@ -1,6 +1,6 @@
 name: pair
-description: A Pair class in dart that inspired from Pair in java 
-version: 0.1.1
+description: A Pair class in dart that inspired Pair from java. Represents a generic pair of two values.
+version: 0.1.2
 repository: https://github.com/nandanurseptama/dart_pair
 
 platforms:

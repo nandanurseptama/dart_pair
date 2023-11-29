@@ -14,28 +14,41 @@ class Pair<K, V> {
     this.value,
   );
 
-  @override
-  bool operator ==(other) {
-    if (other is! Pair) {
-      return false;
-    }
-    return other.key.runtimeType == key.runtimeType &&
-        other.key == key &&
-        other.value.runtimeType == value.runtimeType &&
-        other.value == value;
+  /// deserialized pair
+  (K, V) call() {
+    return (key, value);
   }
 
+  /// Pair to Map
   Map<K, V> get toMap {
     return <K, V>{
       key: value,
     };
   }
 
-  @override
-  String toString() {
-    return "Pair($key, $value)";
+  /// Pair to MapEntry
+  MapEntry<K, V> get toMapEntry {
+    return MapEntry(
+      key,
+      value,
+    );
   }
 
+  /// reverse pair
+  ///
+  /// [key] will be the [value] and vice versa
+  Pair<V, K> get reverse {
+    return Pair<V, K>(
+      value,
+      key,
+    );
+  }
+
+  /// copy with function
+  ///
+  /// [key] and [value] are optional
+  ///
+  /// if no value are supplied will take the instance value
   Pair<K, V> copyWith({
     K? key,
     V? value,
@@ -46,13 +59,9 @@ class Pair<K, V> {
     );
   }
 
-  Pair<V, K> get reverse {
-    return Pair<V, K>(
-      value,
-      key,
-    );
-  }
-
+  /// mutate this pair into another pair with difference type
+  ///
+  /// [f] is your mutation function
   Pair<A, B> mutate<A, B>(Pair<A, B> Function(K key, V value) f) {
     return f(
       key,
@@ -60,11 +69,30 @@ class Pair<K, V> {
     );
   }
 
+  /// transform pair to new value with [A] type
+  ///
+  /// [f] is your function to transform into new value
   A transform<A>(A Function(K key, V value) f) {
     return f(
       key,
       value,
     );
+  }
+
+  @override
+  String toString() {
+    return "Pair($key, $value)";
+  }
+
+  @override
+  bool operator ==(other) {
+    if (other is! Pair) {
+      return false;
+    }
+    return other.key.runtimeType == key.runtimeType &&
+        other.key == key &&
+        other.value.runtimeType == value.runtimeType &&
+        other.value == value;
   }
 
   @override
